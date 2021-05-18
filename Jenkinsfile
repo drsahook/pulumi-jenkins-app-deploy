@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ("Checkout code") {
             steps {
-                git url: "https://github.com/drsahook/pulumirepo.git",
+                git url: "https://github.com/drsahook/pulumi-jenkins-app-deploy.git",
                     // Set your credentials id value here.
                     // See https://jenkins.io/doc/book/using/using-credentials/#adding-new-global-credentials
                     credentialsId: "045af0bb-7107-49a3-b963-4cb48b29c80e",
@@ -28,8 +28,8 @@ pipeline {
                 nodejs(nodeJSInstallationName: "node 8.9.4") {
                     withEnv(["PATH+PULUMI=$HOME/.pulumi/bin"]) {
                         sh "cd infrastructure && npm install"
-                        sh "pulumi stack select ${PULUMI_STACK} --cwd infrastructure/"
-                        sh "pulumi up --yes --cwd infrastructure/"
+                        sh "pulumi stack select ${PULUMI_STACK} /"
+                        sh "pulumi up --yes /"
                     }
                 }
             }

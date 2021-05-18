@@ -25,7 +25,7 @@ pipeline {
             steps {
                 // The value "node 8.9.4" is the configuration name in our Global Tool Configuration setup for node.
                 // You should use the name that you used when you added the installation on that page.
-                nodejs(nodeJSInstallationName: "node 8.9.4") {
+                nodejs(nodeJSInstallationName: "node 14.10.1") {
                     withEnv(["PATH+PULUMI=$HOME/.pulumi/bin"]) {
                         sh "npm install"
                         sh "pulumi stack select ${PULUMI_STACK}"

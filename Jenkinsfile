@@ -27,7 +27,7 @@ pipeline {
                 // You should use the name that you used when you added the installation on that page.
                 nodejs(nodeJSInstallationName: "node 8.9.4") {
                     withEnv(["PATH+PULUMI=$HOME/.pulumi/bin"]) {
-                        sh "cd infrastructure && npm install"
+                        sh "npm install"
                         sh "pulumi stack select ${PULUMI_STACK}"
                         sh "pulumi up --yes"
                     }

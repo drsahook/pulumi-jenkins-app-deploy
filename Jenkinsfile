@@ -16,6 +16,7 @@ pipeline {
 
         stage ("Install dependencies") {
             steps {
+                sh "npm install"
                 sh "curl -fsSL https://get.pulumi.com | sh"
                 sh "$HOME/.pulumi/bin/pulumi version"
             }
@@ -27,7 +28,6 @@ pipeline {
                 // You should use the name that you used when you added the installation on that page.
                 nodejs(nodeJSInstallationName: "node 14.10.1") {
                     withEnv(["PATH+PULUMI=$HOME/.pulumi/bin"]) {
-                        sh "npm install"
                         sh "pulumi stack select ${PULUMI_STACK}"
                         sh "pulumi up --yes"
                     }
